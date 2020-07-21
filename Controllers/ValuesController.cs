@@ -109,11 +109,11 @@ namespace dotnet_ef_core.Controllers {
       blog.Posts.AddRange (posts);
 
       _bloggingContext.ChangeTracker.TrackGraph (blog, e => {
-        e.Entry.State = EntityState.Modified;
+        e.Entry.State = EntityState.Unchanged;
 
-        // if ((e.Entry.Entity as Post) != null) {
-        //   _bloggingContext.Entry (e.Entry.Entity as Post).Property ("Content").IsModified = true;
-        // }
+        if ((e.Entry.Entity as Post) != null) {
+          _bloggingContext.Entry (e.Entry.Entity as Post).Property ("Content").IsModified = true;
+        }
       });
 
       // _bloggingContext.Entry (blog).State = EntityState.Modified;
