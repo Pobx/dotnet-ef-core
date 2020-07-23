@@ -11,10 +11,9 @@ namespace dotnet_ef_core.Models {
 
     public DbSet<Blog> Blogs { get; set; }
     public DbSet<Post> Posts { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Book> Books { get; set; }
 
-    // protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder) {
-    //   optionsBuilder.UseSqlServer ("Server=localhost,1433;Database=pop_test_db2;User Id=sa;Password=P@ssword1234;");
-    // }
   }
 
   public class Blog {
@@ -32,5 +31,18 @@ namespace dotnet_ef_core.Models {
 
     public int BlogId { get; set; }
     public Blog Blog { get; set; }
+  }
+
+  public class Author {
+    public int AuthorId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public ICollection<Book> Books { get; set; }
+  }
+  public class Book {
+    public int BookId { get; set; }
+    public string Title { get; set; }
+    public Author Author { get; set; }
+
   }
 }

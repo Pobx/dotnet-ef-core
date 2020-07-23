@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_ef_core.Models;
 
 namespace dotnet_ef_core.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    partial class BloggingContextModelSnapshot : ModelSnapshot
+    [Migration("20200723085744_AddTableAuthorAndTableBook")]
+    partial class AddTableAuthorAndTableBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,7 +89,7 @@ namespace dotnet_ef_core.Migrations
 
             modelBuilder.Entity("dotnet_ef_core.Models.Book", b =>
                 {
-                    b.HasOne("dotnet_ef_core.Models.Author", "Author")
+                    b.HasOne("dotnet_ef_core.Models.Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId");
                 });
