@@ -123,5 +123,32 @@ namespace dotnet_ef_core.Controllers {
 
     }
 
+    [HttpGet]
+    [Route ("CreateAuthor")]
+    public async Task<ActionResult> CreateAuthor () {
+
+      var author = new Author {
+        FirstName = "Geidtiphong",
+        LastName = "Singseewo",
+        Books = new List<Book> {
+        new Book { Title = "Test Book 1" },
+        new Book { Title = "Test Book 2" },
+        new Book { Title = "Test Book 3" },
+        }
+      };
+
+      await _bloggingContext.AddAsync<Author> (author);
+      var affectedRows = await _bloggingContext.SaveChangesAsync ();
+
+      return Created ("", affectedRows);
+    }
+
+    [HttpGet]
+    [Route ("Authors")]
+    public async Task<ActionResult> Authors () {
+      var authors = await _bloggingContext.Authors.ToListAsync ();
+      return Ok (authors);
+    }
+
   }
 }
