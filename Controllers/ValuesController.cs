@@ -123,5 +123,17 @@ namespace dotnet_ef_core.Controllers {
 
     }
 
+    [HttpGet]
+    [Route ("Create4")]
+    public async Task<ActionResult> Create4 () {
+
+      var order = new Order {};
+
+      await _bloggingContext.AddAsync (order);
+      var affectedRows = await _bloggingContext.SaveChangesAsync ();
+
+      return Created ("", affectedRows);
+    }
+
   }
 }
