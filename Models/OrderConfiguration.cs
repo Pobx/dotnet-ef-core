@@ -7,6 +7,8 @@ namespace dotnet_ef_core.Models {
       builder.Property (t => t.CreatedDateTime)
         .IsRequired ()
         .HasDefaultValueSql ("GETUTCDATE()");
+
+      builder.Property (t => t.Label).IsRequired ().HasDefaultValue ("Pobx");
     }
   }
 }
