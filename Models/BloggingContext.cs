@@ -13,7 +13,20 @@ namespace dotnet_ef_core.Models {
     public DbSet<Post> Posts { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    protected override void OnModelCreating (ModelBuilder modelBuilder) {
+      modelBuilder.Entity<Order> ()
+        .Property (t => t.CreatedDateTime)
+        .IsRequired ()
+        .HasColumnType ("Date")
+        .HasDefaultValueSql ("GetDate()");
+    }
 
+  }
+
+  public class Order {
+    public int OrderId { get; set; }
+    public DateTime CreatedDateTime { get; set; } = DateTime.Now;
   }
 
   public class Blog {
@@ -39,6 +52,7 @@ namespace dotnet_ef_core.Models {
     public string LastName { get; set; }
     public ICollection<Book> Books { get; set; }
   }
+
   public class Book {
     public int BookId { get; set; }
     public string Title { get; set; }
