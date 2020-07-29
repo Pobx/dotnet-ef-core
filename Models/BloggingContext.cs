@@ -19,8 +19,7 @@ namespace dotnet_ef_core.Models {
       modelBuilder.Entity<Order> ()
         .Property (t => t.CreatedDateTime)
         .IsRequired ()
-        .HasColumnType ("Date")
-        .HasDefaultValueSql ("GetDate()");
+        .HasDefaultValueSql ("NOW()");
     }
 
   }
