@@ -16,6 +16,8 @@ namespace dotnet_ef_core.Models {
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
     public DbSet<Order> Orders { get; set; }
+    public DbSet<Saler> Salers { get; set; }
+
     protected override void OnModelCreating (ModelBuilder modelBuilder) {
       modelBuilder.ApplyConfigurationsFromAssembly (Assembly.GetExecutingAssembly ());
     }
@@ -27,6 +29,14 @@ namespace dotnet_ef_core.Models {
     public string Label { get; set; }
 
     public DateTime CreatedDateTime { get; set; }
+    public Saler Saler { get; set; }
+  }
+
+  public class Saler {
+    public int SalerId { get; set; }
+    public string Name { get; set; }
+    public ICollection<Order> Orders { get; set; }
+
   }
 
   public class Blog {
