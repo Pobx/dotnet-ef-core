@@ -27,7 +27,7 @@ namespace dotnet_ef_core.Models {
 
   public class Order {
     public int OrderId { get; set; }
-    public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+    public DateTime CreatedDateTime { get; set; }
   }
 
   public class Blog {
