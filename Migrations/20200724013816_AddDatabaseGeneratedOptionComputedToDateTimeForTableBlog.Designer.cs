@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_ef_core.Models;
 
 namespace dotnet_ef_core.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    partial class BloggingContextModelSnapshot : ModelSnapshot
+    [Migration("20200724013816_AddDatabaseGeneratedOptionComputedToDateTimeForTableBlog")]
+    partial class AddDatabaseGeneratedOptionComputedToDateTimeForTableBlog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,8 @@ namespace dotnet_ef_core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedDateTime");
+                    b.Property<DateTime>("CreatedDateTime")
+                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Url");
 
@@ -66,29 +69,13 @@ namespace dotnet_ef_core.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("dotnet_ef_core.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("Date")
-                        .HasDefaultValueSql("GetDate()");
-
-                    b.HasKey("OrderId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("dotnet_ef_core.Models.Post", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BlogFK");
+                    b.Property<int>("BlogId");
 
                     b.Property<string>("Content");
 
@@ -96,7 +83,7 @@ namespace dotnet_ef_core.Migrations
 
                     b.HasKey("PostId");
 
-                    b.HasIndex("BlogFK");
+                    b.HasIndex("BlogId");
 
                     b.ToTable("Posts");
                 });
@@ -112,7 +99,7 @@ namespace dotnet_ef_core.Migrations
                 {
                     b.HasOne("dotnet_ef_core.Models.Blog", "Blog")
                         .WithMany("Posts")
-                        .HasForeignKey("BlogFK")
+                        .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

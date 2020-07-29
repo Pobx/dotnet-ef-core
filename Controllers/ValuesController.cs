@@ -26,7 +26,7 @@ namespace dotnet_ef_core.Controllers {
     public async Task<ActionResult> Create () {
 
       var blog = new Blog {
-        Url = "www.example.com",
+        Url = "www.example5555.com",
         Posts = new List<Post> {
         new Post { Title = "Test Post 1", Content = "Content Post 1" },
         new Post { Title = "Test Post 2", Content = "Content Post 2" },
@@ -97,7 +97,7 @@ namespace dotnet_ef_core.Controllers {
 
       var blog = new Blog {
         BlogId = 1,
-        Url = "www.pop3.com",
+        Url = "www.pop3sss.com",
       };
 
       var posts = new List<Post> {
@@ -108,15 +108,15 @@ namespace dotnet_ef_core.Controllers {
 
       blog.Posts.AddRange (posts);
 
-      _bloggingContext.ChangeTracker.TrackGraph (blog, e => {
-        e.Entry.State = EntityState.Unchanged;
+      // _bloggingContext.ChangeTracker.TrackGraph (blog, e => {
+      //   e.Entry.State = EntityState.Unchanged;
 
-        if ((e.Entry.Entity as Post) != null) {
-          _bloggingContext.Entry (e.Entry.Entity as Post).Property ("Content").IsModified = true;
-        }
-      });
+      //   if ((e.Entry.Entity as Post) != null) {
+      //     _bloggingContext.Entry (e.Entry.Entity as Post).Property ("Content").IsModified = true;
+      //   }
+      // });
 
-      // _bloggingContext.Entry (blog).State = EntityState.Modified;
+      _bloggingContext.Entry (blog).State = EntityState.Modified;
 
       var affectedRows = await _bloggingContext.SaveChangesAsync ();
       return Ok (affectedRows);
@@ -127,7 +127,7 @@ namespace dotnet_ef_core.Controllers {
     [Route ("Create4")]
     public async Task<ActionResult> Create4 () {
 
-      var order = new Order {};
+      var order = new Order { };
 
       await _bloggingContext.AddAsync (order);
       var affectedRows = await _bloggingContext.SaveChangesAsync ();

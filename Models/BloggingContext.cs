@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -32,8 +33,8 @@ namespace dotnet_ef_core.Models {
   public class Blog {
     public int BlogId { get; set; }
     public string Url { get; set; }
-    public DateTime CreatedDateTime { get; set; } = DateTime.Now;
 
+    public DateTime CreatedDateTime { get; set; } = DateTime.Now;
     public List<Post> Posts { set; get; } = new List<Post> ();
   }
 
@@ -41,15 +42,19 @@ namespace dotnet_ef_core.Models {
     public int PostId { get; set; }
     public string Title { get; set; }
     public string Content { get; set; }
-
-    public int BlogId { get; set; }
     public Blog Blog { get; set; }
+
+    [ForeignKey ("Blog")]
+    public int BlogFK { get; set; }
   }
 
   public class Author {
     public int AuthorId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
+
+    [NotMapped]
+    public string FullName => $"{FirstName} {LastName}";
     public ICollection<Book> Books { get; set; }
   }
 
