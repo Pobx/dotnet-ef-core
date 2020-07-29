@@ -10,8 +10,8 @@ using dotnet_ef_core.Models;
 namespace dotnet_ef_core.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20200729044923_AddSalerToOrderWithoutHasMany")]
-    partial class AddSalerToOrderWithoutHasMany
+    [Migration("20200729050417_AddSaleOneToManyOrders")]
+    partial class AddSaleOneToManyOrders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,7 +83,11 @@ namespace dotnet_ef_core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue("Pobx");
 
+                    b.Property<int?>("SalerId");
+
                     b.HasKey("OrderId");
+
+                    b.HasIndex("SalerId");
 
                     b.ToTable("Orders");
                 });
@@ -115,11 +119,7 @@ namespace dotnet_ef_core.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("OrderId");
-
                     b.HasKey("SalerId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("Salers");
                 });
@@ -131,19 +131,19 @@ namespace dotnet_ef_core.Migrations
                         .HasForeignKey("AuthorId");
                 });
 
+            modelBuilder.Entity("dotnet_ef_core.Models.Order", b =>
+                {
+                    b.HasOne("dotnet_ef_core.Models.Saler", "Saler")
+                        .WithMany("Orders")
+                        .HasForeignKey("SalerId");
+                });
+
             modelBuilder.Entity("dotnet_ef_core.Models.Post", b =>
                 {
                     b.HasOne("dotnet_ef_core.Models.Blog", "Blog")
                         .WithMany("Posts")
                         .HasForeignKey("BlogFK")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("dotnet_ef_core.Models.Saler", b =>
-                {
-                    b.HasOne("dotnet_ef_core.Models.Order", "Order")
-                        .WithMany("Employees")
-                        .HasForeignKey("OrderId");
                 });
 #pragma warning restore 612, 618
         }
