@@ -74,7 +74,7 @@ namespace dotnet_ef_core.Migrations
 
                     b.Property<DateTime>("CreatedDateTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NOW()");
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.HasKey("OrderId");
 

@@ -10,8 +10,8 @@ using dotnet_ef_core.Models;
 namespace dotnet_ef_core.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20200729030326_UserNowMethodForOrder")]
-    partial class UserNowMethodForOrder
+    [Migration("20200729031327_UseGETUTCDATEToOrderClass")]
+    partial class UseGETUTCDATEToOrderClass
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,7 +76,7 @@ namespace dotnet_ef_core.Migrations
 
                     b.Property<DateTime>("CreatedDateTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NOW()");
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.HasKey("OrderId");
 

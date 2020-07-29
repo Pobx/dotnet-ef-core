@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace dotnet_ef_core.Migrations
 {
-    public partial class UserNowMethodForOrder : Migration
+    public partial class UseGETUTCDATEToOrderClass : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace dotnet_ef_core.Migrations
                 name: "CreatedDateTime",
                 table: "Orders",
                 nullable: false,
-                defaultValueSql: "NOW()",
+                defaultValueSql: "GETUTCDATE()",
                 oldClrType: typeof(DateTime),
                 oldType: "Date",
                 oldDefaultValueSql: "GetDate()");
@@ -26,7 +26,7 @@ namespace dotnet_ef_core.Migrations
                 nullable: false,
                 defaultValueSql: "GetDate()",
                 oldClrType: typeof(DateTime),
-                oldDefaultValueSql: "NOW()");
+                oldDefaultValueSql: "GETUTCDATE()");
         }
     }
 }
