@@ -10,9 +10,9 @@ namespace dotnet_ef_core.Models {
       );
 
       modelBuilder.Entity<Item> ().HasData (
-        new Item { ItemId = 1, OrderId = 1, Name = "Hamlet" },
-        new Item { ItemId = 2, OrderId = 1, Name = "King Lear" },
-        new Item { ItemId = 3, OrderId = 1, Name = "Othello" }
+        new Item { ItemId = 1, OrderId = 1, Name = "Item 01" },
+        new Item { ItemId = 2, OrderId = 1, Name = "Item 02" },
+        new Item { ItemId = 3, OrderId = 1, Name = "Item 03" }
       );
     }
   }
