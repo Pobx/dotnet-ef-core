@@ -16,6 +16,7 @@ namespace dotnet_ef_core.Models {
 
     protected override void OnModelCreating (ModelBuilder modelBuilder) {
       modelBuilder.ApplyConfigurationsFromAssembly (Assembly.GetExecutingAssembly ());
+      modelBuilder.Seed ();
     }
 
   }
