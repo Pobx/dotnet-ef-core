@@ -5,6 +5,7 @@ namespace dotnet_ef_core.Models {
     public int ItemId { get; set; }
     public string Name { get; set; }
     public float Price { get; set; }
+    public Order Order { get; set; }
 
   }
 }

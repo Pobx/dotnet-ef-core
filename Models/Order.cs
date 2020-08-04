@@ -1,10 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 namespace dotnet_ef_core.Models {
-  public class Order {
+  public class Order : MainModel {
     public int OrderId { get; set; }
-    public string Label { get; set; }
-
-    public DateTime CreatedDateTime { get; set; }
+    public ICollection<Item> Items { get; set; }
   }
 }
