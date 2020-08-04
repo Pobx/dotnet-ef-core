@@ -18,7 +18,5 @@ namespace dotnet_ef_core.Models {
       modelBuilder.ApplyConfigurationsFromAssembly (Assembly.GetExecutingAssembly ());
       modelBuilder.Seed ();
     }
-
   }
-
 }
