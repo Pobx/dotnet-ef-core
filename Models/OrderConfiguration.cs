@@ -8,8 +8,8 @@ namespace dotnet_ef_core.Models {
         .IsRequired ()
         .HasDefaultValueSql ("GETUTCDATE()");
 
-      builder.Property (t => t.Label).IsRequired ().HasDefaultValue ("Pobx");
-      builder.HasOne (s => s.Saler).WithMany (o => o.Orders);
+      // builder.Property (t => t.Label).IsRequired ().HasDefaultValue ("Pobx");
+      // builder.HasOne (s => s.Saler).WithMany (o => o.Orders);s
     }
   }
 }
